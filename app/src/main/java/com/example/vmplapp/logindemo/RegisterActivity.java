@@ -90,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
                         Log.d("Insert: ", "Inserting ..");
                         //db.addUser(new MstUsers("" + Uname, "" + pass, "" + Fname, "" + contno, "" + emailid, "" + usertype, 0, 1));
                         db.addUser(new MstUsers(Uname, pass, Fname, contno, emailid, usertype, 0, 1));
+                        finish();
                     } else
                         Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_LONG).show();
 
@@ -112,6 +113,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+        Toast.makeText(RegisterActivity.this, "Please select UserType", Toast.LENGTH_LONG).show();
 
     }
 }

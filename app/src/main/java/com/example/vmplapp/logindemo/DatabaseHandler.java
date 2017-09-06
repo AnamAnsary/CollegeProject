@@ -83,14 +83,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_DEPT_TABLE = "CREATE TABLE " + TABLE_DEPT + "("
                 + KEY_DEPTID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + KEY_DEPTNAME + " TEXT,"
-                + KEY_DEPTHOD + " TEXT,"
+                + KEY_DEPTHOD + " INTEGER,"
                 + KEY_ACTIVE + " INTEGER"
                 + ")";
 
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_DEPT_TABLE);
         Log.w(TAG, "onCreate: Database created");
-        Toast.makeText(context, "Database Created", Toast.LENGTH_LONG).show();
+       // Toast.makeText(context, "Database Created", Toast.LENGTH_LONG).show();
 
     }
 
@@ -121,7 +121,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Inserting Row
         db.insert(TABLE_USERS, null, values);
         Log.w(TAG, "addUser: added user" );
-        Toast.makeText(context, "User Added", Toast.LENGTH_LONG).show();
+        //Toast.makeText(context, "User Added", Toast.LENGTH_LONG).show();
         db.close(); // Closing database connection
     }
 
@@ -161,7 +161,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<MstUsers> getAllHodUsers() {
         List<MstUsers> hodList = new ArrayList<MstUsers>();
         // Select All Query
-        String selectQuery = "SELECT  * FROM " + TABLE_USERS + "where " + KEY_USERTYPE + " = ?";
+        String selectQuery = "SELECT  * FROM " + TABLE_USERS + " where " + KEY_USERTYPE + " = 'Department HOD'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
@@ -171,7 +171,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             do {
                 MstUsers hoduser = new MstUsers();
                 hoduser.setId(Integer.parseInt(cursor.getString(0)));
-                hoduser.setUsername(cursor.getString(3));
+                hoduser.setFullname(cursor.getString(3));
                 // Adding contact to list
                 hodList.add(hoduser);
             } while (cursor.moveToNext());
@@ -180,5 +180,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // return contact list
         return hodList;
 
+    }
+
+    public void addDept(MstDept mstDept) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_DEPTNAME, mstDept.getDeptname());
+        values.put(KEY_DEPTHOD, mstDept.getDeptHOD());
+        values.put(KEY_ACTIVE, mstDept.getActive());
+
+        // Inserting Row
+        db.insert(TABLE_DEPT, null, values);
+        Log.w(TAG, "addDept: added department" );
+        //Toast.makeText(context, "User Added", Toast.LENGTH_LONG).show();
+        db.close(); // Closing database connection
     }
 }

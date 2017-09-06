@@ -20,6 +20,7 @@
         <activity android:name=".RegisterActivity"> </activity>
         <activity android:name=".ClgAdminActivity"> </activity>
         <activity android:name=".CreateDeptActivity"> </activity>
+        <activity android:name=".StudentActivity"> </activity>
     </application>
 
 </manifest>

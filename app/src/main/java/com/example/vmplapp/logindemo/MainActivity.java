@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(i);
                             break;
                         case "Teacher" :
-                            i = new Intent(MainActivity.this,TeacherActivity.class);
-                            startActivity(i);
+                          /*  i = new Intent(MainActivity.this,TeacherActivity.class);
+                            startActivity(i);*/
                             break;
                         case "Department HOD" :
                             i = new Intent(MainActivity.this,DeptHodActivity.class);
