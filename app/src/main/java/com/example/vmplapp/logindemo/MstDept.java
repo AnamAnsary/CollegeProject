@@ -27,6 +27,11 @@ public class MstDept {
         return active;
     }
 
+    public MstDept(String deptname, int deptHOD) {
+        this.deptname = deptname;
+        this.deptHOD = deptHOD;
+    }
+
     public void setActive(int active) {
         this.active = active;
     }

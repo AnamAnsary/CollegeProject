@@ -53,6 +53,9 @@ public class MstUsers {
         return username;
     }
 
+    public MstUsers() {
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
