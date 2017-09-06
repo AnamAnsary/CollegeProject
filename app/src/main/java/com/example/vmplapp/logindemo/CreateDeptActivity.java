@@ -87,8 +87,11 @@ public class CreateDeptActivity extends AppCompatActivity implements AdapterView
             @Override
             public void onClick(View view) {
                 dNameEntered = deptname.getText().toString();
-                if(dNameEntered.length() != 0)
-                db.addDept(new MstDept(dNameEntered, IdOfHod, 1));
+                if(dNameEntered.length() != 0) {
+                    db.addDept(new MstDept(dNameEntered, IdOfHod, 1));
+                    Toast.makeText(CreateDeptActivity.this, "Added department successfully", Toast.LENGTH_LONG).show();
+                    finish();
+                }
                 else
                     Toast.makeText(CreateDeptActivity.this, "Please Enter Department Name.", Toast.LENGTH_LONG).show();
             }

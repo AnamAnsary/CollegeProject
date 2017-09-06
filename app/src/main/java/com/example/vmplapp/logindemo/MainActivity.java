@@ -50,30 +50,34 @@ public class MainActivity extends AppCompatActivity {
                 Lpass = password.getText().toString();
                 if (Lemail.length() != 0 && Lpass.length() != 0)
                 {
-                    MstUsers user = db.checkUser(Lemail,Lpass);
-                    Toast.makeText(MainActivity.this, "FullName, contact no and usertype is "+ user.getFullname()+ " "+user.getContactno()+" "+user.getUsertype(), Toast.LENGTH_LONG).show();
-                    usertypeSelected = user.getUsertype();
-                    Intent i;
-                    switch (usertypeSelected){
-                        case "Student" :
-                            i = new Intent(MainActivity.this,StudentActivity.class);
-                            startActivity(i);
-                            break;
-                        case "Teacher" :
+                    try {
+                        MstUsers user = db.checkUser(Lemail, Lpass);
+                       // Toast.makeText(MainActivity.this, "FullName, contact no and usertype is " + user.getFullname() + " " + user.getContactno() + " " + user.getUsertype(), Toast.LENGTH_LONG).show();
+                        usertypeSelected = user.getUsertype();
+                        Intent i;
+                        switch (usertypeSelected) {
+                            case "Student":
+                                i = new Intent(MainActivity.this, StudentActivity.class);
+                                startActivity(i);
+                                break;
+                            case "Teacher":
                           /*  i = new Intent(MainActivity.this,TeacherActivity.class);
                             startActivity(i);*/
-                            break;
-                        case "Department HOD" :
-                            i = new Intent(MainActivity.this,DeptHodActivity.class);
-                            startActivity(i);
-                            break;
-                        case "College Admin" :
-                            i = new Intent(MainActivity.this, ClgAdminActivity.class);
-                            startActivity(i);
-                            break;
+                                break;
+                            case "Department HOD":
+                                i = new Intent(MainActivity.this, DeptHodActivity.class);
+                                startActivity(i);
+                                break;
+                            case "College Admin":
+                                i = new Intent(MainActivity.this, ClgAdminActivity.class);
+                                startActivity(i);
+                                break;
 
+                        }
                     }
-
+                    catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "No such user found", Toast.LENGTH_LONG).show();
+                    }
 
                 }
                 else
